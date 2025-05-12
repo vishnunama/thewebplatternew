@@ -26,55 +26,55 @@ interface ReviewProps {
 
 const reviewList: ReviewProps[] = [
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe",
-    userName: "Product Manager",
+    image: "https://github.com/TheWebPlatter.png",
+    name: "Aarav Mehta",
+    userName: "Owner, QuickBite Corner",
     comment:
-      "Wow NextJs + Shadcn is awesome!. This template lets me change colors, fonts and images to match my brand identity. ",
+      "The fast food ordering app they built for us is intuitive and fast. Customers love the smooth experience and real-time order tracking!",
     rating: 5.0,
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "Sophia Collins",
-    userName: "Cybersecurity Analyst",
+    image: "https://github.com/TheWebPlatter.png",
+    name: "Pooja Sharma",
+    userName: "Founder, FashionKart",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. ",
-    rating: 4.8,
-  },
-
-  {
-    image: "https://github.com/shadcn.png",
-    name: "Adam Johnson",
-    userName: "Chief Technology Officer",
-    comment:
-      "Lorem ipsum dolor sit amet,exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "They delivered our eCommerce app on time with all key features like payment integration, order management, and a clean UI. Great job!",
     rating: 4.9,
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "Ethan Parker",
-    userName: "Data Scientist",
+    image: "https://github.com/TheWebPlatter.png",
+    name: "Rohit Kapoor",
+    userName: "Director, Elite Realty",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      "Our real estate platform now looks professional and functions perfectly. Users can easily browse properties and book appointments.",
     rating: 5.0,
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "Ava Mitchell",
-    userName: "IT Project Manager",
+    image: "https://github.com/TheWebPlatter.png",
+    name: "Simran Kaur",
+    userName: "Manager, TableTreats Restaurant",
     comment:
-      "Lorem ipsum dolor sit amet, tempor incididunt  aliqua. Ut enim ad minim veniam, quis nostrud incididunt consectetur adipiscing elit.",
+      "From table reservations to online menus, they built us a restaurant app that covers everything. The support has been excellent too!",
+    rating: 4.8,
+  },
+  {
+    image: "https://github.com/TheWebPlatter.png",
+    name: "Aditya Singh",
+    userName: "Co-founder, Urban Essentials",
+    comment:
+      "We needed a multipurpose delivery app for groceries and household items. They delivered a full-stack solution with admin control!",
     rating: 5.0,
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "Isabella Reed",
-    userName: "DevOps Engineer",
+    image: "https://github.com/TheWebPlatter.png",
+    name: "Neha Verma",
+    userName: "Owner, Café Bliss",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Our café app has improved our customer loyalty and ease of ordering. Their UI design and backend support are top-notch!",
     rating: 4.9,
   },
 ];
+
 
 export const TestimonialSection = () => {
   return (
@@ -85,7 +85,7 @@ export const TestimonialSection = () => {
         </h2>
 
         <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-          Hear What Our 1000+ Clients Say
+          Hear What Our 100+ Clients Say
         </h2>
       </div>
 

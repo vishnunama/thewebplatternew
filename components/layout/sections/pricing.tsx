@@ -24,51 +24,45 @@ interface PlanProps {
 }
 
 const plans: PlanProps[] = [
-  {
-    title: "Free",
+ {
+    title: "Basic",
     popular: 0,
-    price: 0,
+    price: 5000,
     description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Start Free Trial",
+      "Get a simple landing page like food delivery, e-commerce, restaurant, café, fast food, or real estate.",
+    buttonText: "Start Now",
     benefitList: [
-      "1 team member",
-      "1 GB storage",
-      "Upto 2 pages",
-      "Community support",
-      "AI assistance",
+      "Landing page design",
+      "Domain and hosting included",
+      "Support: 3 months"
+    ],
+  },
+  {
+    title: "Standard",
+    popular: 1,
+    price: 30000,
+    description:
+      "Complete dynamic website or software tailored for your business needs.",
+    buttonText: "Get Started",
+    benefitList: [
+      "Dynamic website/software",
+      "Domain and hosting included",
+      "Support: 1 year"
     ],
   },
   {
     title: "Premium",
-    popular: 1,
-    price: 45,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Get starterd",
-    benefitList: [
-      "4 team member",
-      "8 GB storage",
-      "Upto 6 pages",
-      "Priority support",
-      "AI assistance",
-    ],
-  },
-  {
-    title: "Enterprise",
     popular: 0,
-    price: 120,
+    price: 50000,
     description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Contact US",
+      "Custom software, website, or application built exactly as per your requirement.",
+    buttonText: "Contact Us",
     benefitList: [
-      "10 team member",
-      "20 GB storage",
-      "Upto 10 pages",
-      "Phone & email support",
-      "AI assistance",
+      "Fully customized solution",
+      "Domain and hosting included",
+      "Support: Lifetime"
     ],
-  },
+  }
 ];
 
 export const PricingSection = () => {
@@ -83,7 +77,7 @@ export const PricingSection = () => {
       </h2>
 
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14">
-        Lorem ipsum dolor sit amet consectetur adipisicing reiciendis.
+       Choose the perfect plan for your business. Whether you need a simple landing page or a complete custom solution, we’ve got you covered.
       </h3>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
@@ -105,8 +99,8 @@ export const PricingSection = () => {
                 </CardDescription>
 
                 <div>
-                  <span className="text-3xl font-bold">${price}</span>
-                  <span className="text-muted-foreground"> /month</span>
+                  <span className="text-3xl font-bold">₹{price}</span>
+                  <span className="text-muted-foreground"> /-</span>
                 </div>
               </CardHeader>
 
