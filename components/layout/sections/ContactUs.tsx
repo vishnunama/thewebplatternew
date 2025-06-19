@@ -18,10 +18,18 @@ import {
   CheckCircle,
   Users
 } from "lucide-react";
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+}
 
 export const ContactUs = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -29,18 +37,56 @@ export const ContactUs = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
+    setIsSubmitting(true);
+    
+    try {
+      // Handle form submission here
+      console.log('Form submitted:', formData);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      alert('Thank you for your message! We will get back to you within 24 hours.');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handlePhoneCall = () => {
+    window.open('tel:+918696548657', '_self');
+  };
+
+  const handleEmailClick = () => {
+    window.open('mailto:hello@yourdigitalservices.com', '_self');
+  };
+
+  const handleScheduleMeeting = () => {
+    // You can integrate with calendar booking services like Calendly
+    window.open('https://calendly.com/your-link', '_blank');
   };
 
   return (
@@ -51,36 +97,36 @@ export const ContactUs = () => {
           Contact Us
         </h2>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Let's Build Something Amazing Together
+          Let&apos;s Build Something Amazing Together
         </h1>
         <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
           Ready to transform your ideas into stunning digital experiences? Get in touch 
-          with us today and let's discuss your website development, landing page, or design project.
+          with us today and let&apos;s discuss your website development, landing page, or design project.
         </p>
       </div>
 
       {/* Contact Info Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-        <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+        <Card className="text-center p-6 hover:shadow-lg transition-shadow cursor-pointer" onClick={handlePhoneCall}>
           <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <Phone className="w-6 h-6 text-primary" />
           </div>
           <h3 className="font-semibold mb-2">Call Us</h3>
           <p className="text-muted-foreground mb-2">Ready to discuss your project?</p>
-          <a href="tel:+918696548657" className="text-primary font-medium hover:underline">
+          <span className="text-primary font-medium hover:underline">
             +91 8696548657
-          </a>
+          </span>
         </Card>
 
-        <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+        <Card className="text-center p-6 hover:shadow-lg transition-shadow cursor-pointer" onClick={handleEmailClick}>
           <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <Mail className="w-6 h-6 text-primary" />
           </div>
           <h3 className="font-semibold mb-2">Email Us</h3>
           <p className="text-muted-foreground mb-2">Send us your requirements</p>
-          <a href="mailto:hello@yourdigitalservices.com" className="text-primary font-medium hover:underline">
+          <span className="text-primary font-medium hover:underline">
             hello@yourdigitalservices.com
-          </a>
+          </span>
         </Card>
 
         <Card className="text-center p-6 hover:shadow-lg transition-shadow">
@@ -100,52 +146,75 @@ export const ContactUs = () => {
           <CardHeader className="pb-6">
             <h3 className="text-2xl font-bold mb-2">Get a Free Quote</h3>
             <p className="text-muted-foreground">
-              Tell us about your project and we'll get back to you within 24 hours.
+              Tell us about your project and we&apos;ll get back to you within 24 hours.
             </p>
           </CardHeader>
           <CardContent>
-            <div onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Full Name *</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    Full Name *
+                  </label>
                   <input
+                    id="name"
                     type="text"
                     name="name"
+                    required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white"
+                    disabled={isSubmitting}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    placeholder="Enter your full name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Phone Number *</label>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    Phone Number *
+                  </label>
                   <input
+                    id="phone"
                     type="tel"
                     name="phone"
+                    required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white"
+                    disabled={isSubmitting}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    placeholder="+91 XXXXX XXXXX"
                   />
                 </div>
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2">Email Address *</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email Address *
+                </label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
+                  required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white"
+                  disabled={isSubmitting}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  placeholder="your.email@example.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Service Required *</label>
+                <label htmlFor="service" className="block text-sm font-medium mb-2">
+                  Service Required *
+                </label>
                 <select
+                  id="service"
                   name="service"
+                  required
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white"
+                  disabled={isSubmitting}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <option value="">Select a service</option>
                   <option value="website-development">Website Development</option>
@@ -153,27 +222,52 @@ export const ContactUs = () => {
                   <option value="website-design">Website Design</option>
                   <option value="ecommerce">E-commerce Website</option>
                   <option value="redesign">Website Redesign</option>
+                  <option value="maintenance">Website Maintenance</option>
+                  <option value="seo">SEO Services</option>
                   <option value="other">Other</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Project Details *</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  Project Details *
+                </label>
                 <textarea
+                  id="message"
                   name="message"
+                  required
                   value={formData.message}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white resize-none"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Tell us about your project requirements, timeline, and budget..."
+                  minLength={10}
                 ></textarea>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Minimum 10 characters required
+                </p>
               </div>
 
-              <Button onClick={handleSubmit} size="lg" className="w-full">
-                <Send className="w-4 h-4 mr-2" />
-                Send Message
+              <Button 
+                type="submit" 
+                size="lg" 
+                className="w-full" 
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 mr-2 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Send Message
+                  </>
+                )}
               </Button>
-            </div>
+            </form>
           </CardContent>
         </Card>
 
@@ -261,8 +355,8 @@ export const ContactUs = () => {
       <div className="mb-20">
         <h3 className="text-2xl font-bold text-center mb-12">Our Digital Services</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="p-6 hover:shadow-lg transition-shadow text-center">
-            <Globe className="w-8 h-8 text-primary mb-4 mx-auto" />
+          <Card className="p-6 hover:shadow-lg transition-shadow text-center group cursor-pointer">
+            <Globe className="w-8 h-8 text-primary mb-4 mx-auto group-hover:scale-110 transition-transform" />
             <h4 className="font-semibold mb-2">Website Development</h4>
             <p className="text-sm text-muted-foreground mb-4">
               Custom websites with modern design and functionality
@@ -274,8 +368,8 @@ export const ContactUs = () => {
             </ul>
           </Card>
 
-          <Card className="p-6 hover:shadow-lg transition-shadow text-center">
-            <MessageSquare className="w-8 h-8 text-primary mb-4 mx-auto" />
+          <Card className="p-6 hover:shadow-lg transition-shadow text-center group cursor-pointer">
+            <MessageSquare className="w-8 h-8 text-primary mb-4 mx-auto group-hover:scale-110 transition-transform" />
             <h4 className="font-semibold mb-2">Landing Pages</h4>
             <p className="text-sm text-muted-foreground mb-4">
               High-converting landing pages for your campaigns
@@ -287,8 +381,8 @@ export const ContactUs = () => {
             </ul>
           </Card>
 
-          <Card className="p-6 hover:shadow-lg transition-shadow text-center">
-            <Users className="w-8 h-8 text-primary mb-4 mx-auto" />
+          <Card className="p-6 hover:shadow-lg transition-shadow text-center group cursor-pointer">
+            <Users className="w-8 h-8 text-primary mb-4 mx-auto group-hover:scale-110 transition-transform" />
             <h4 className="font-semibold mb-2">Website Design</h4>
             <p className="text-sm text-muted-foreground mb-4">
               Beautiful, user-friendly designs that engage visitors
@@ -306,15 +400,15 @@ export const ContactUs = () => {
       <div className="text-center bg-primary/5 rounded-lg p-8">
         <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Don't wait! Contact us today for a free consultation and let's discuss 
+          Don&apos;t wait! Contact us today for a free consultation and let&apos;s discuss 
           how we can help bring your digital vision to life.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg">
+          <Button size="lg" onClick={handlePhoneCall}>
             <Phone className="w-4 h-4 mr-2" />
             Call Now: +91 8696548657
           </Button>
-          <Button variant="outline" size="lg">
+          <Button variant="outline" size="lg" onClick={handleScheduleMeeting}>
             <Calendar className="w-4 h-4 mr-2" />
             Schedule Meeting
           </Button>

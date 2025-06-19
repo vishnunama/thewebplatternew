@@ -70,7 +70,7 @@ export const ContactSection = () => {
             <h2 className="text-3xl md:text-4xl font-bold">Connect With Us</h2>
           </div>
           <p className="mb-8 text-muted-foreground lg:w-5/6">
-            Ready to transform your ideas into stunning digital experiences? Let's discuss 
+            Ready to transform your ideas into stunning digital experiences? Lets discuss 
             your website development, landing page, or design project and bring your vision to life.
           </p>
 

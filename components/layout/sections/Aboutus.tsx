@@ -27,7 +27,7 @@ import {
             We Build Digital Experiences That Matter
           </h1>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            We're a passionate team of developers and designers dedicated to creating 
+            Were a passionate team of developers and designers dedicated to creating 
             innovative solutions that transform ideas into powerful digital experiences.
           </p>
         </div>
@@ -183,8 +183,8 @@ import {
         <div className="text-center bg-primary/5 rounded-lg p-8">
           <h3 className="text-2xl font-bold mb-4">Ready to Work Together?</h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Let's discuss how we can help bring your ideas to life. 
-            We're always excited to take on new challenges and create something amazing.
+            Lets discuss how we can help bring your ideas to life. 
+            Were always excited to take on new challenges and create something amazing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg">

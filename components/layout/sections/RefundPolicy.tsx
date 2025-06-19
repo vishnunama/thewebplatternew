@@ -87,7 +87,7 @@ export const RefundPolicy = () => {
                 <li>• Project requirements were not met as per initial agreement</li>
                 <li>• Significant delays caused by our team (beyond agreed timeline)</li>
                 <li>• Technical issues that cannot be resolved</li>
-                <li>• Quality of work doesn't match the promised standards</li>
+                <li>• Quality of work doesnt match the promised standards</li>
                 <li>• Project cancellation due to our inability to deliver</li>
               </ul>
             </CardContent>
@@ -126,7 +126,7 @@ export const RefundPolicy = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Step 2: Review Process</h4>
-                  <p>We'll review your case within 3-5 business days</p>
+                  <p>Well review your case within 3-5 business days</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Step 3: Decision & Processing</h4>

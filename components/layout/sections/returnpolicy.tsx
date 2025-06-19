@@ -85,7 +85,7 @@ export const ReturnPolicy = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Step 2: Get Authorization</h4>
-                  <p>We'll provide you with a Return Authorization Number (RAN) and shipping instructions</p>
+                  <p>Well provide you with a Return Authorization Number (RAN) and shipping instructions</p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Step 3: Ship Items</h4>
@@ -93,7 +93,7 @@ export const ReturnPolicy = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Step 4: Get Refund</h4>
-                  <p>Once we receive and inspect your return, we'll process your refund</p>
+                  <p>Once we receive and inspect your return, well process your refund</p>
                 </div>
               </div>
             </CardContent>

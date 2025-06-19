@@ -245,7 +245,7 @@ import {
           <h3 className="text-2xl font-bold mb-4">Questions About Privacy?</h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             If you have any questions about this privacy policy or how we handle your data, 
-            please don't hesitate to contact us. We're here to help and ensure your privacy is protected.
+            please dont hesitate to contact us. Were here to help and ensure your privacy is protected.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg">
