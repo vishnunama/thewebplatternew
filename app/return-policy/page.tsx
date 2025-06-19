@@ -1,5 +1,4 @@
 import { ReturnPolicy } from "@/components/layout/sections/ReturnPolicy";
-
 export const metadata = {
   title: "Return Policy - veltrix",
   description: "Learn about our return policy, refund process, and how to return items purchased from veltrix",
