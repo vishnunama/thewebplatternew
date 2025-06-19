@@ -26,7 +26,7 @@ interface ReviewProps {
 
 const reviewList: ReviewProps[] = [
   {
-    image: "https://github.com/TheWebPlatter.png",
+    image: "https://github.com/veltrix.png",
     name: "Aarav Mehta",
     userName: "Owner, QuickBite Corner",
     comment:
@@ -34,7 +34,7 @@ const reviewList: ReviewProps[] = [
     rating: 5.0,
   },
   {
-    image: "https://github.com/TheWebPlatter.png",
+    image: "https://github.com/veltrix.png",
     name: "Pooja Sharma",
     userName: "Founder, FashionKart",
     comment:
@@ -42,7 +42,7 @@ const reviewList: ReviewProps[] = [
     rating: 4.9,
   },
   {
-    image: "https://github.com/TheWebPlatter.png",
+    image: "https://github.com/veltrix.png",
     name: "Rohit Kapoor",
     userName: "Director, Elite Realty",
     comment:
@@ -50,7 +50,7 @@ const reviewList: ReviewProps[] = [
     rating: 5.0,
   },
   {
-    image: "https://github.com/TheWebPlatter.png",
+    image: "https://github.com/veltrix.png",
     name: "Simran Kaur",
     userName: "Manager, TableTreats Restaurant",
     comment:
@@ -58,7 +58,7 @@ const reviewList: ReviewProps[] = [
     rating: 4.8,
   },
   {
-    image: "https://github.com/TheWebPlatter.png",
+    image: "https://github.com/veltrix.png",
     name: "Aditya Singh",
     userName: "Co-founder, Urban Essentials",
     comment:
@@ -66,7 +66,7 @@ const reviewList: ReviewProps[] = [
     rating: 5.0,
   },
   {
-    image: "https://github.com/TheWebPlatter.png",
+    image: "https://github.com/veltrix.png",
     name: "Neha Verma",
     userName: "Owner, Café Bliss",
     comment:

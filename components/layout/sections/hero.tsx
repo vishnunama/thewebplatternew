@@ -44,7 +44,7 @@ export const HeroSection = () => {
           <div className="max-w-screen-md mx-auto text-center text-3xl sm:text-4xl md:text-6xl font-bold">
             <h1>
               <span className="text-transparent px-2 bg-gradient-to-r from-[#D247BF] to-primary bg-clip-text">
-                The Web Platter
+               VelTrix Web Solution
               </span>
               Development Company
             </h1>
@@ -66,7 +66,7 @@ export const HeroSection = () => {
               className="w-full sm:w-5/6 md:w-1/4 font-bold"
             >
               <Link
-                href="https://github.com/nobruf/TheWebPlatter-landing-page.git"
+                href="https://github.com/nobruf/veltrix-landing-page.git"
                 target="_blank"
               >
                 Message Now

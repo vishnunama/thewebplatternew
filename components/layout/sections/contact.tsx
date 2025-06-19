@@ -1,11 +1,12 @@
 "use client";
+
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Building2, Clock, Mail, Phone } from "lucide-react";
+import { Clock, Mail, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -43,7 +44,7 @@ export const ContactSection = () => {
       firstName: "",
       lastName: "",
       email: "",
-      subject: "Web Development",
+      subject: "Website Development",
       message: "",
     },
   });
@@ -52,7 +53,7 @@ export const ContactSection = () => {
     const { firstName, lastName, email, subject, message } = values;
     console.log(values);
 
-    const mailToLink = `mailto:leomirandadev@gmail.com?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
+    const mailToLink = `mailto:hello@yourdigitalservices.com?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
 
     window.location.href = mailToLink;
   }
@@ -69,54 +70,45 @@ export const ContactSection = () => {
             <h2 className="text-3xl md:text-4xl font-bold">Connect With Us</h2>
           </div>
           <p className="mb-8 text-muted-foreground lg:w-5/6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            ipsam sint enim exercitationem ex autem corrupti quas tenetur
+            Ready to transform your ideas into stunning digital experiences? Let's discuss 
+            your website development, landing page, or design project and bring your vision to life.
           </p>
 
           <div className="flex flex-col gap-4">
-            <div>
-              <div className="flex gap-2 mb-1">
-                <Building2 />
-                <div className="font-bold">Find us</div>
-              </div>
-
-              <div>742 Evergreen Terrace, Springfield, IL 62704</div>
-            </div>
-
             <div>
               <div className="flex gap-2 mb-1">
                 <Phone />
                 <div className="font-bold">Call us</div>
               </div>
 
-              <div>+1 (619) 123-4567</div>
+              <div>+91 8696548657</div>
             </div>
 
             <div>
               <div className="flex gap-2 mb-1">
                 <Mail />
-                <div className="font-bold">Mail US</div>
+                <div className="font-bold">Mail Us</div>
               </div>
 
-              <div>leomirandadev@gmail.com</div>
+              <div>hello@yourdigitalservices.com</div>
             </div>
 
             <div>
               <div className="flex gap-2">
                 <Clock />
-                <div className="font-bold">Visit us</div>
+                <div className="font-bold">Business Hours</div>
               </div>
 
               <div>
-                <div>Monday - Friday</div>
-                <div>8AM - 4PM</div>
+                <div>Monday - Saturday</div>
+                <div>9:00 AM - 8:00 PM IST</div>
               </div>
             </div>
           </div>
         </div>
 
         <Card className="bg-muted/60 dark:bg-card">
-          <CardHeader className="text-primary text-2xl"> </CardHeader>
+          <CardHeader className="text-primary text-2xl">Get a Free Quote</CardHeader>
           <CardContent>
             <Form {...form}>
               <form
@@ -131,7 +123,7 @@ export const ContactSection = () => {
                       <FormItem className="w-full">
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Leopoldo" {...field} />
+                          <Input placeholder="Your first name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -144,7 +136,7 @@ export const ContactSection = () => {
                       <FormItem className="w-full">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Miranda" {...field} />
+                          <Input placeholder="Your last name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -162,7 +154,7 @@ export const ContactSection = () => {
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="leomirandadev@gmail.com"
+                            placeholder="your.email@example.com"
                             {...field}
                           />
                         </FormControl>
@@ -178,29 +170,34 @@ export const ContactSection = () => {
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Subject</FormLabel>
+                        <FormLabel>Service Required</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select a subject" />
+                              <SelectValue placeholder="Select a service" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Web Development">
-                              Web Development
+                            <SelectItem value="Website Development">
+                              Website Development
                             </SelectItem>
-                            <SelectItem value="Mobile Development">
-                              Mobile Development
+                            <SelectItem value="Landing Page Design">
+                              Landing Page Design
                             </SelectItem>
-                            <SelectItem value="Figma Design">
-                              Figma Design
+                            <SelectItem value="Website Design">
+                              Website Design
                             </SelectItem>
-                            <SelectItem value="REST API">REST API</SelectItem>
-                            <SelectItem value="FullStack Project">
-                              FullStack Project
+                            <SelectItem value="E-commerce Website">
+                              E-commerce Website
+                            </SelectItem>
+                            <SelectItem value="Website Redesign">
+                              Website Redesign
+                            </SelectItem>
+                            <SelectItem value="Other">
+                              Other
                             </SelectItem>
                           </SelectContent>
                         </Select>
@@ -216,11 +213,11 @@ export const ContactSection = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
+                        <FormLabel>Project Details</FormLabel>
                         <FormControl>
                           <Textarea
                             rows={5}
-                            placeholder="Your message..."
+                            placeholder="Tell us about your project requirements, timeline, and budget..."
                             className="resize-none"
                             {...field}
                           />
@@ -232,7 +229,7 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <Button className="mt-4">Send message</Button>
+                <Button className="mt-4">Send Message</Button>
               </form>
             </Form>
           </CardContent>

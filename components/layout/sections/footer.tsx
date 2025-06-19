@@ -4,116 +4,183 @@ import Link from "next/link";
 
 export const FooterSection = () => {
   return (
-    <footer id="footer" className="container py-24 sm:py-32">
-      <div className="p-10 bg-card border border-secondary rounded-2xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
-          <div className="col-span-full xl:col-span-2">
-            <Link href="#" className="flex font-bold items-center">
-              {/* <ChevronsDownIcon className="w-9 h-9 mr-2 bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg border border-secondary" /> */}
-      <img className="w-24" src="/assets/thewebplatter.png" alt="" />
-
-              {/* <h3 className="text-2xl">TheWebPlatter</h3> */}
-            </Link>
+    <footer className="bg-gray-50 dark:bg-[#161412] border-t">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Brand Section */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center space-x-2 mb-4">
+              <img className="h-auto w-24" src="/assets/veltrix-dark.png" alt="" />
+              {/* <ChevronsDownIcon className=" text-blue-600" /> */}
+              {/* <span className="text-xl font-bold text-gray-900 dark:text-white">
+                Veltrix
+              </span> */}
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              Building amazing digital experiences with modern technology.
+            </p>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Contact</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Github
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Twitter
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Instagram
-              </Link>
-            </div>
+          {/* Company Section */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+              Company
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/about" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/contactus" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="https://github.com" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Platforms</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                iOS
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Android
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Web
-              </Link>
-            </div>
+          {/* Platforms Section */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+              Platforms
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="#" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  iOS
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="#" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Android
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="#" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Web
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Help</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Contact Us
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                FAQ
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Feedback
-              </Link>
-            </div>
+          {/* Legal Section */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+              Legal
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/privacypolicy" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/return-policy" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Return Policy
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/refund-policy" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Refund Policy
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Socials</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Twitch
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Discord
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                Dribbble
-              </Link>
-            </div>
+          {/* Social Section */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+              Social
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="https://twitter.com" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Twitter
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="https://instagram.com" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="https://discord.com" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Discord
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <Separator className="my-6" />
-        <section className="">
-          <h3 className="">
-            &copy; 2024 Designed and developed by
-            <Link
-              target="_blank"
-              href="https://github.com/leoMirandaa"
-              className="text-primary transition-all border-primary hover:border-b-2 ml-1"
+        {/* Separator */}
+        <Separator className="my-8" />
+
+        {/* Bottom Section */}
+        <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            © 2024 Veltrix. All rights reserved.
+          </div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            Designed and developed by{" "}
+            <Link 
+              href="#" 
+              className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
             >
               Leo Miranda
             </Link>
-          </h3>
-        </section>
+          </div>
+        </div>
       </div>
     </footer>
   );

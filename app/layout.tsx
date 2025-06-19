@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/layout/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TheWebPlatter - Landing template",
-  description: "Landing template from TheWebPlatter",
+  title: "veltrix - Landing template",
+  description: "Landing template from veltrix",
 };
 
 export default function RootLayout({

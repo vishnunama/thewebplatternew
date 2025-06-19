@@ -1,3 +1,4 @@
+import { Aboutus } from "@/components/layout/sections/Aboutus";
 import { BenefitsSection } from "@/components/layout/sections/benefits";
 import { CommunitySection } from "@/components/layout/sections/community";
 import { ContactSection } from "@/components/layout/sections/contact";
@@ -12,29 +13,29 @@ import { TeamSection } from "@/components/layout/sections/team";
 import { TestimonialSection } from "@/components/layout/sections/testimonial";
 
 export const metadata = {
-  title: "TheWebPlatter - Landing template",
-  description: "Free TheWebPlatter landing page for developers",
+  title: "veltrix - Landing template",
+  description: "Free veltrix landing page for developers",
   openGraph: {
     type: "website",
-    url: "https://github.com/nobruf/TheWebPlatter-landing-page.git",
-    title: "TheWebPlatter - Landing template",
-    description: "Free TheWebPlatter landing page for developers",
+    url: "https://github.com/nobruf/veltrix-landing-page.git",
+    title: "veltrix - Landing template",
+    description: "Free veltrix landing page for developers",
     images: [
       {
-        url: "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/TheWebPlatter-vue.jpg",
+        url: "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/veltrix-vue.jpg",
         width: 1200,
         height: 630,
-        alt: "TheWebPlatter - Landing template",
+        alt: "veltrix - Landing template",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "https://github.com/nobruf/TheWebPlatter-landing-page.git",
-    title: "TheWebPlatter - Landing template",
-    description: "Free TheWebPlatter landing page for developers",
+    site: "https://github.com/nobruf/veltrix-landing-page.git",
+    title: "veltrix - Landing template",
+    description: "Free veltrix landing page for developers",
     images: [
-      "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/TheWebPlatter-vue.jpg",
+      "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/veltrix-vue.jpg",
     ],
   },
 };
@@ -52,6 +53,7 @@ export default function Home() {
       <CommunitySection />
       <PricingSection />
       <ContactSection />
+      
       <FAQSection />
       <FooterSection />
     </>

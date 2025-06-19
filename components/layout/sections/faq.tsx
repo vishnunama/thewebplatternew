@@ -13,33 +13,34 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free NextJS TheWebPlatter template.",
+    question: "What web development services do you offer?",
+    answer: "I specialize in creating modern websites, landing pages, e-commerce stores, and web applications. I work with technologies like React, Next.js, Node.js, and various CMS platforms to deliver high-quality, responsive websites.",
     value: "item-1",
   },
   {
-    question: "Duis aute irure dolor in reprehenderit in voluptate velit?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam consectetur sapiente, iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+    question: "How long does it take to develop a website?",
+    answer: "The timeline depends on the project complexity. A simple landing page takes 3-5 days, a business website takes 1-2 weeks, and complex web applications can take 4-8 weeks. I'll provide a detailed timeline after understanding your requirements.",
     value: "item-2",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet Consectetur natus dolor minus quibusdam?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis.",
+    question: "Do you provide website design along with development?",
+    answer: "Yes! I offer complete web design and development services. This includes UI/UX design, responsive layouts, modern aesthetics, and conversion-focused landing pages that look great and perform well.",
     value: "item-3",
   },
   {
-    question: "Excepteur sint occaecat cupidata non proident sunt?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "What's included in your website development package?",
+    answer: "My packages include responsive design, mobile optimization, SEO basics, contact forms, social media integration, fast loading speeds, and 30 days of free support after launch. Custom features can be added based on your needs.",
     value: "item-4",
   },
   {
-    question:
-      "Enim ad minim veniam, quis nostrud exercitation ullamco laboris?",
-    answer: "consectetur adipisicing elit. Sint labore.",
+    question: "Do you offer ongoing maintenance and support?",
+    answer: "Absolutely! I provide website maintenance services including updates, security monitoring, performance optimization, content updates, and technical support. I offer both one-time fixes and monthly maintenance plans.",
     value: "item-5",
+  },
+  {
+    question: "Can you help with SEO and digital marketing?",
+    answer: "Yes, I implement SEO best practices during development including proper meta tags, structured data, page speed optimization, and mobile-friendly design. I can also help with basic digital marketing strategies for better online visibility.",
+    value: "item-6",
   },
 ];
 

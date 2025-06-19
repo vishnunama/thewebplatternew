@@ -34,23 +34,54 @@ interface FeatureProps {
   description: string;
 }
 
+// यहाँ सभी policy pages को add करें
 const routeList: RouteProps[] = [
+
   {
-    href: "#testimonials",
-    label: "Testimonials",
+    href: "/",
+    label: "Home",
   },
   {
-    href: "#team",
-    label: "Team",
+    href: "/about",
+    label: "About Us",
   },
   {
-    href: "#contact",
-    label: "Contact",
+    href: "/return-policy",
+    label: "Return Policy",
   },
   {
-    href: "#faq",
-    label: "FAQ",
+    href: "/refund-policy",     // ← Refund Policy route add करें
+    label: "Refund Policy",     // ← Refund Policy label add करें
   },
+
+  {
+    href: "/privacypolicy",     
+    label: "Privacy Policy",   
+  },
+  {
+    href: "/contactus",     
+    label: "Contact Us",   
+  },
+
+  
+
+  
+  // {
+  //   href: "#testimonials",
+  //   label: "Testimonials",
+  // },
+  // {
+  //   href: "#team",
+  //   label: "Team",
+  // },
+  // {
+  //   href: "#contact",
+  //   label: "Contact",
+  // },
+  // {
+  //   href: "#faq",
+  //   label: "FAQ",
+  // },
 ];
 
 const featureList: FeatureProps[] = [
@@ -90,12 +121,12 @@ export const Navbar = () => {
           <>
             {/* Show dark logo in dark mode */}
             {currentTheme === 'dark' && (
-              <img className="w-20 h-auto" src="/assets/thewebplatter-dark.png" alt="TheWebPlatter Dark Logo" />
+              <img className="w-24 h-auto" src="/assets/veltrix-dark.png" alt="veltrix Dark Logo" />
             )}
             
             {/* Show light logo in light mode */}
             {currentTheme === 'light' && (
-              <img className="w-20 h-auto" src="/assets/thewebplatter-light.jpg" alt="TheWebPlatter Light Logo" />
+              <img className="w-24 h-auto" src="/assets/veltrix-light.png" alt="veltrix Light Logo" />
             )}
           </>
         )}
@@ -122,13 +153,13 @@ export const Navbar = () => {
                     {mounted && (
                       <>
                         {currentTheme === 'dark' ? (
-                          <img className="w-12 h-auto mr-2" src="/assets/thewebplatter-dark.png" alt="TheWebPlatter Dark Logo" />
+                          <img className="w-24 h-auto mr-2" src="/assets/veltrix-dark.png" alt="veltrix Dark Logo" />
                         ) : (
-                          <img className="w-12 h-auto mr-2" src="/assets/thewebplatter-light.jpg" alt="TheWebPlatter Light Logo" />
+                          <img className="w-24 h-auto mr-2" src="/assets/veltrix-light.png" alt="veltrix Light Logo" />
                         )}
                       </>
                     )}
-                    TheWebPlatter
+                  
                   </Link>
                 </SheetTitle>
               </SheetHeader>
@@ -207,15 +238,7 @@ export const Navbar = () => {
       <div className="hidden lg:flex">
         <ToggleTheme />
 
-        {/* <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
-          <Link
-            aria-label="View on GitHub"
-            href="https://github.com/nobruf/TheWebPlatter-landing-page.git"
-            target="_blank"
-          >
-            <Github className="size-5" />
-          </Link>
-        </Button> */}
+      
       </div>
     </header>
   );
