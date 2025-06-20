@@ -45,10 +45,7 @@ const routeList: RouteProps[] = [
     href: "/about",
     label: "About Us",
   },
-  {
-    href: "/return-policy",
-    label: "Return Policy",
-  },
+  
   {
     href: "/refund-policy",     // ← Refund Policy route add करें
     label: "Refund Policy",     // ← Refund Policy label add करें
