@@ -100,7 +100,7 @@ export const ShippingAndDelivery = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <span className="text-2xl">📋</span>
-                What You'll Receive
+                What You&apos;ll Receive
               </CardTitle>
             </CardHeader>
             <CardContent>
