@@ -1,7 +1,7 @@
 "use client";
 import { Menu } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Sheet,
   SheetContent,
@@ -13,15 +13,12 @@ import {
 import { Separator } from "@/components/ui/separator";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
 import { ToggleTheme } from "@/components/layout/toogle-theme";
 import { useTheme } from "next-themes";
 
@@ -60,7 +57,6 @@ const routeList: RouteProps[] = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -80,8 +76,6 @@ export const Navbar = () => {
   const currentTheme = theme === 'system' ? resolvedTheme : theme;
   const isDark = currentTheme === 'dark';
 
-  const showFullNav = !scrolled || isHovered;
-
   if (!mounted) {
     return null;
   }
@@ -91,34 +85,34 @@ export const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`sticky top-5 mx-auto z-40 transition-all duration-500 ${
-        showFullNav
-          ? "w-[90%] md:w-[70%] lg:w-[75%]"
-          : "w-auto max-w-fit"
-      } lg:max-w-screen-xl`}
+      className="w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky z-40"
     >
       <motion.div
-        layout
-        transition={{ duration: 0.4, type: "spring" }}
-        className={`relative flex justify-between items-center rounded-2xl backdrop-blur-xl transition-all duration-500 ${
+        animate={{
+          boxShadow: scrolled 
+            ? isDark 
+              ? '0 20px 25px -5px rgba(139, 92, 246, 0.3), 0 10px 10px -5px rgba(236, 72, 153, 0.2)' 
+              : '0 20px 25px -5px rgba(139, 92, 246, 0.2), 0 10px 10px -5px rgba(236, 72, 153, 0.15)'
+            : '0 0 0 0 rgba(0, 0, 0, 0)',
+        }}
+        transition={{ duration: 0.3 }}
+        className={`relative flex justify-between items-center p-2 rounded-2xl backdrop-blur-xl transition-all duration-500 ${
           isDark
-            ? scrolled && !isHovered
-              ? "bg-slate-950/95 border-2 border-purple-500/30 shadow-2xl shadow-purple-500/20"
+            ? scrolled
+              ? "bg-slate-950/95 border-2 border-purple-500/40"
               : "bg-slate-950/80 border border-slate-700/50 shadow-inner"
-            : scrolled && !isHovered
-            ? "bg-white/95 border-2 border-purple-300/40 shadow-2xl shadow-purple-300/20"
+            : scrolled
+            ? "bg-white/95 border-2 border-purple-300/50"
             : "bg-white/80 border border-gray-200/50 shadow-inner"
-        } ${showFullNav ? "p-2" : "p-2 px-4"}`}
+        }`}
       >
         {/* Animated Gradient Border Glow on Scroll */}
-        {scrolled && !isHovered && (
+        {scrolled && (
           <motion.div
-            className="absolute inset-0 rounded-2xl opacity-50 pointer-events-none"
+            className="absolute inset-0 rounded-2xl opacity-30 pointer-events-none"
             style={{
               background: `linear-gradient(90deg, transparent, ${
-                isDark ? "rgba(139, 92, 246, 0.5)" : "rgba(139, 92, 246, 0.3)"
+                isDark ? "rgba(139, 92, 246, 0.6)" : "rgba(139, 92, 246, 0.4)"
               }, transparent)`,
               backgroundSize: "200% 100%",
             }}
@@ -134,66 +128,29 @@ export const Navbar = () => {
         )}
 
         {/* Logo Section */}
-        <motion.div 
-          className="flex items-center gap-3"
-          layout
-        >
-          <Link href="/" className="font-bold text-lg flex items-center">
-            <motion.img
-              layout
-              className={`transition-all duration-500 ${
-                showFullNav ? "w-24 h-auto" : "w-12 h-auto"
-              }`}
-              src={isDark ? "/assets/veltrix-dark.png" : "/assets/veltrix-light.png"}
-              alt="Veltrix Logo"
-            />
-          </Link>
+        <Link href="/" className="font-bold text-lg flex items-center relative z-10">
+          <motion.img
+            whileHover={{ scale: 1.05 }}
+            className="w-24 h-auto"
+            src={isDark ? "/assets/veltrix-dark.png" : "/assets/veltrix-light.png"}
+            alt="Veltrix Logo"
+          />
+        </Link>
 
-          {/* Available for Work Badge - Shows when scrolled and NOT hovered */}
-          <AnimatePresence>
-            {scrolled && !isHovered && (
-              <motion.div
-                initial={{ opacity: 0, x: -10, scale: 0.8 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -10, scale: 0.8 }}
-                transition={{ duration: 0.3, type: "spring" }}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap ${
-                  isDark
-                    ? "bg-slate-900/90 border border-purple-500/50"
-                    : "bg-white/90 border border-purple-300/50"
-                } backdrop-blur-sm shadow-lg`}
+        {/* Mobile Menu Button */}
+{/* Mobile Menu Button */}
+<div className="flex items-center lg:hidden xl:hidden relative z-10">  
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <motion.button
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsOpen(!isOpen)}
+                className="cursor-pointer p-2"
               >
-                <motion.div
-                  className="w-2 h-2 bg-green-500 rounded-full shadow-lg shadow-green-500/50"
-                  animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [1, 0.7, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                  }}
-                />
-                <span>Available for work</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Mobile Menu Button - Only show when full nav is visible */}
-        {showFullNav && (
-          <div className="flex items-center lg:hidden">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <motion.button
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="cursor-pointer p-2"
-                >
-                  <Menu />
-                </motion.button>
-              </SheetTrigger>
+                <Menu />
+              </motion.button>
+            </SheetTrigger>
 
             <SheetContent
               side="left"
@@ -236,96 +193,60 @@ export const Navbar = () => {
 
               <SheetFooter className="flex-col sm:flex-col justify-start items-start">
                 <Separator className="mb-2" />
-                
-                {/* Available Badge in Mobile */}
-                <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-semibold mb-4 ${
-                  isDark
-                    ? "bg-slate-900 border border-purple-500/50"
-                    : "bg-gray-100 border border-purple-300/50"
-                }`}>
-                  <motion.div
-                    className="w-2 h-2 bg-green-500 rounded-full"
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [1, 0.7, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                  />
-                  <span>Available for work</span>
-                </div>
-
                 <ToggleTheme />
               </SheetFooter>
             </SheetContent>
           </Sheet>
-          </div>
-        )}
+        </div>
 
         {/* Desktop Navigation - HORIZONTAL LINE */}
-        <AnimatePresence>
-          {showFullNav && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              className="hidden lg:block mx-auto"
-            >
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem className="flex items-center gap-1">
-                    {routeList.map(({ href, label }) => (
-                      <NavigationMenuLink key={href} asChild>
-                        <motion.div
-                          whileHover={{ y: -2 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Link
-                            href={href}
-                            className={`text-sm px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
-                              isDark
-                                ? "hover:bg-slate-800 hover:text-purple-400"
-                                : "hover:bg-gray-100 hover:text-purple-600"
-                            }`}
-                          >
-                            {label}
-                          </Link>
-                        </motion.div>
-                      </NavigationMenuLink>
-                    ))}
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <NavigationMenu className="hidden lg:block mx-auto relative z-10">
+          <NavigationMenuList>
+            <NavigationMenuItem className="flex items-center gap-1">
+              {routeList.map(({ href, label }) => (
+                <NavigationMenuLink key={href} asChild>
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Link
+                      href={href}
+                      className={`text-sm px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
+                        isDark
+                          ? "hover:bg-slate-800 hover:text-purple-400"
+                          : "hover:bg-gray-100 hover:text-purple-600"
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  </motion.div>
+                </NavigationMenuLink>
+              ))}
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
         {/* Desktop Right Side - Theme Toggle */}
-        <motion.div 
-          layout
-          className={`hidden lg:flex ${scrolled && !isHovered ? 'ml-3' : ''}`}
-        >
+        <div className="hidden lg:flex relative z-10">
           <ToggleTheme />
-        </motion.div>
+        </div>
 
-        {/* Bottom Glow Effect */}
-        {scrolled && !isHovered && (
+        {/* Bottom Glow Effect on Scroll */}
+        {scrolled && (
           <motion.div
-            className={`absolute -bottom-6 left-1/2 -translate-x-1/2 w-[70%] h-6 blur-2xl rounded-full pointer-events-none ${
+            className={`absolute -bottom-6 left-1/2 -translate-x-1/2 w-[70%] h-8 blur-2xl rounded-full pointer-events-none ${
               isDark
-                ? "bg-gradient-to-r from-purple-600/40 via-pink-600/40 to-purple-600/40"
-                : "bg-gradient-to-r from-purple-400/30 via-pink-400/30 to-purple-400/30"
+                ? "bg-gradient-to-r from-purple-600/40 via-pink-600/50 to-purple-600/40"
+                : "bg-gradient-to-r from-purple-400/30 via-pink-400/40 to-purple-400/30"
             }`}
             animate={{
-              opacity: [0.3, 0.6, 0.3],
-              scale: [0.95, 1, 0.95],
+              opacity: [0.4, 0.7, 0.4],
+              scale: [0.95, 1.05, 0.95],
             }}
             transition={{
-              duration: 2,
+              duration: 2.5,
               repeat: Infinity,
+              ease: "easeInOut",
             }}
           />
         )}

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -80,11 +80,15 @@ const serviceList: ServiceProps[] = [
 export const ServicesSection = () => {
   const { theme } = useTheme();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   
-  const isDark = theme === 'dark';
-
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  const isDark = !mounted || theme === 'dark';
   return (
     <section 
       id="services" 

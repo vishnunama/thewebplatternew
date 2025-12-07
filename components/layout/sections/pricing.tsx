@@ -175,10 +175,15 @@ export const PricingSection = () => {
   const { theme } = useTheme();
   const [selectedProject, setSelectedProject] = useState(0);
   const [hoveredPackage, setHoveredPackage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   
-  const isDark = theme === 'dark';
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  const isDark = !mounted || theme === 'dark';
   const currentProject = projects[selectedProject];
 
   const getPackageColor = (type: PackageType) => {

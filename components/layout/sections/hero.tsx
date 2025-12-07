@@ -48,9 +48,28 @@ const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     mouseY.set(0);
   };
 
-  const isDark = theme === 'dark';
-
-  if (!mounted) return null;
+const isDark = !mounted || theme === 'dark';
+  if (!mounted) {
+    // Dark theme skeleton while loading
+    return (
+      <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid place-items-center lg:max-w-screen-xl gap-12 mx-auto py-20 md:py-32">
+            <div className="text-center space-y-8">
+              <div className="h-8 w-48 bg-slate-800 rounded-full mx-auto animate-pulse" />
+              <div className="h-24 w-full max-w-2xl bg-slate-800 rounded-2xl mx-auto animate-pulse" />
+              <div className="h-6 w-96 bg-slate-800 rounded-lg mx-auto animate-pulse" />
+              <div className="flex gap-4 justify-center">
+                <div className="h-12 w-32 bg-slate-800 rounded-lg animate-pulse" />
+                <div className="h-12 w-32 bg-slate-800 rounded-lg animate-pulse" />
+              </div>
+            </div>
+            <div className="w-full max-w-6xl h-96 bg-slate-800 rounded-3xl animate-pulse" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={`relative min-h-screen w-full overflow-hidden ${
