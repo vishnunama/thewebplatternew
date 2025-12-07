@@ -1,6 +1,7 @@
 "use client";
-import { ChevronsDown, Github, Menu } from "lucide-react";
-import React from "react";
+import { Menu } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Sheet,
   SheetContent,
@@ -8,8 +9,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
-import { Separator } from "../ui/separator";
+} from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,11 +18,11 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu";
-import { Button } from "../ui/button";
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { ToggleTheme } from "./toogle-theme";
+import { ToggleTheme } from "@/components/layout/toogle-theme";
 import { useTheme } from "next-themes";
 
 interface RouteProps {
@@ -29,14 +30,7 @@ interface RouteProps {
   label: string;
 }
 
-interface FeatureProps {
-  title: string;
-  description: string;
-}
-
-// यहाँ सभी policy pages को add करें
 const routeList: RouteProps[] = [
-
   {
     href: "/",
     label: "Home",
@@ -45,210 +39,297 @@ const routeList: RouteProps[] = [
     href: "/about",
     label: "About Us",
   },
-  
   {
-    href: "/refund-policy",     // ← Refund Policy route add करें
-    label: "Refund Policy",     // ← Refund Policy label add करें
-  },
-
-  {
-    href: "/privacypolicy",     
-    label: "Privacy Policy",   
+    href: "/refund-policy",
+    label: "Refund Policy",
   },
   {
-    href: "/termsandconditions",     
-    label: "Terms & Conditions",   
-  },
-
-  {
-    href: "/shippinganddelivery",     
-    label: "Shipping & Delivery",   
-  },
-
-  
-  
-  {
-    href: "/contactus",     
-    label: "Contact Us",   
-  },
-
-  
-
-  
-  // {
-  //   href: "#testimonials",
-  //   label: "Testimonials",
-  // },
-  // {
-  //   href: "#team",
-  //   label: "Team",
-  // },
-  // {
-  //   href: "#contact",
-  //   label: "Contact",
-  // },
-  // {
-  //   href: "#faq",
-  //   label: "FAQ",
-  // },
-];
-
-const featureList: FeatureProps[] = [
-  {
-    title: "Showcase Your Value ",
-    description: "Highlight how your product solves user problems.",
+    href: "/privacypolicy",
+    label: "Privacy Policy",
   },
   {
-    title: "Build Trust",
-    description:
-      "Leverages social proof elements to establish trust and credibility.",
+    href: "/termsandconditions",
+    label: "Terms & Conditions",
   },
   {
-    title: "Capture Leads",
-    description:
-      "Make your lead capture form visually appealing and strategically.",
+    href: "/contactus",
+    label: "Contact Us",
   },
 ];
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // After mounting, we can safely show the theme-dependent content
-  React.useEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
-  
-  // Determine current theme for logo display
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const currentTheme = theme === 'system' ? resolvedTheme : theme;
-  
+  const isDark = currentTheme === 'dark';
+
+  const showFullNav = !scrolled || isHovered;
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
-      <Link href="/" className="font-bold text-lg flex items-center">
-        {mounted && (
-          <>
-            {/* Show dark logo in dark mode */}
-            {currentTheme === 'dark' && (
-              <img className="w-24 h-auto" src="/assets/veltrix-dark.png" alt="veltrix Dark Logo" />
-            )}
-            
-            {/* Show light logo in light mode */}
-            {currentTheme === 'light' && (
-              <img className="w-24 h-auto" src="/assets/veltrix-light.png" alt="veltrix Light Logo" />
-            )}
-          </>
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`sticky top-5 mx-auto z-40 transition-all duration-500 ${
+        showFullNav
+          ? "w-[90%] md:w-[70%] lg:w-[75%]"
+          : "w-auto max-w-fit"
+      } lg:max-w-screen-xl`}
+    >
+      <motion.div
+        layout
+        transition={{ duration: 0.4, type: "spring" }}
+        className={`relative flex justify-between items-center rounded-2xl backdrop-blur-xl transition-all duration-500 ${
+          isDark
+            ? scrolled && !isHovered
+              ? "bg-slate-950/95 border-2 border-purple-500/30 shadow-2xl shadow-purple-500/20"
+              : "bg-slate-950/80 border border-slate-700/50 shadow-inner"
+            : scrolled && !isHovered
+            ? "bg-white/95 border-2 border-purple-300/40 shadow-2xl shadow-purple-300/20"
+            : "bg-white/80 border border-gray-200/50 shadow-inner"
+        } ${showFullNav ? "p-2" : "p-2 px-4"}`}
+      >
+        {/* Animated Gradient Border Glow on Scroll */}
+        {scrolled && !isHovered && (
+          <motion.div
+            className="absolute inset-0 rounded-2xl opacity-50 pointer-events-none"
+            style={{
+              background: `linear-gradient(90deg, transparent, ${
+                isDark ? "rgba(139, 92, 246, 0.5)" : "rgba(139, 92, 246, 0.3)"
+              }, transparent)`,
+              backgroundSize: "200% 100%",
+            }}
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
         )}
-      </Link>
-      
-      {/* <!-- Mobile --> */}
-      <div className="flex items-center lg:hidden">
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Menu
-              onClick={() => setIsOpen(!isOpen)}
-              className="cursor-pointer lg:hidden"
+
+        {/* Logo Section */}
+        <motion.div 
+          className="flex items-center gap-3"
+          layout
+        >
+          <Link href="/" className="font-bold text-lg flex items-center">
+            <motion.img
+              layout
+              className={`transition-all duration-500 ${
+                showFullNav ? "w-24 h-auto" : "w-12 h-auto"
+              }`}
+              src={isDark ? "/assets/veltrix-dark.png" : "/assets/veltrix-light.png"}
+              alt="Veltrix Logo"
             />
-          </SheetTrigger>
+          </Link>
 
-          <SheetContent
-            side="left"
-            className="flex flex-col justify-between rounded-tr-2xl rounded-br-2xl bg-card border-secondary"
-          >
-            <div>
-              <SheetHeader className="mb-4 ml-4">
-                <SheetTitle className="flex items-center">
-                  <Link href="/" className="flex items-center">
-                    {mounted && (
-                      <>
-                        {currentTheme === 'dark' ? (
-                          <img className="w-24 h-auto mr-2" src="/assets/veltrix-dark.png" alt="veltrix Dark Logo" />
-                        ) : (
-                          <img className="w-24 h-auto mr-2" src="/assets/veltrix-light.png" alt="veltrix Light Logo" />
-                        )}
-                      </>
-                    )}
-                  
-                  </Link>
-                </SheetTitle>
-              </SheetHeader>
-
-              <div className="flex flex-col gap-2">
-                {routeList.map(({ href, label }) => (
-                  <Button
-                    key={href}
-                    onClick={() => setIsOpen(false)}
-                    asChild
-                    variant="ghost"
-                    className="justify-start text-sm"
-                  >
-                    <Link href={href}>{label}</Link>
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            <SheetFooter className="flex-col sm:flex-col justify-start items-start">
-              <Separator className="mb-2" />
-
-              <ToggleTheme />
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* <!-- Desktop --> */}
-      <NavigationMenu className="hidden lg:block mx-auto">
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            {/* <NavigationMenuTrigger className="bg-card text-base">
-              Features
-            </NavigationMenuTrigger> */}
-            <NavigationMenuContent>
-              <div className="grid w-[600px] grid-cols-2 gap-5 p-4">
-                <Image
-                  src="https://avatars.githubusercontent.com/u/75042455?v=4"
-                  alt="RadixLogo"
-                  className="h-full w-full rounded-md object-cover"
-                  width={600}
-                  height={600}
+          {/* Available for Work Badge - Shows when scrolled and NOT hovered */}
+          <AnimatePresence>
+            {scrolled && !isHovered && (
+              <motion.div
+                initial={{ opacity: 0, x: -10, scale: 0.8 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -10, scale: 0.8 }}
+                transition={{ duration: 0.3, type: "spring" }}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap ${
+                  isDark
+                    ? "bg-slate-900/90 border border-purple-500/50"
+                    : "bg-white/90 border border-purple-300/50"
+                } backdrop-blur-sm shadow-lg`}
+              >
+                <motion.div
+                  className="w-2 h-2 bg-green-500 rounded-full shadow-lg shadow-green-500/50"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [1, 0.7, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                  }}
                 />
-                <ul className="flex flex-col gap-2">
-                  {featureList.map(({ title, description }) => (
-                    <li
-                      key={title}
-                      className="rounded-md p-3 text-sm hover:bg-muted"
+                <span>Available for work</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Mobile Menu Button - Only show when full nav is visible */}
+        {showFullNav && (
+          <div className="flex items-center lg:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <motion.button
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="cursor-pointer p-2"
+                >
+                  <Menu />
+                </motion.button>
+              </SheetTrigger>
+
+            <SheetContent
+              side="left"
+              className={`flex flex-col justify-between rounded-tr-2xl rounded-br-2xl backdrop-blur-xl ${
+                isDark ? "bg-slate-950/95 border-slate-800" : "bg-white/95 border-gray-200"
+              }`}
+            >
+              <div>
+                <SheetHeader className="mb-4 ml-4">
+                  <SheetTitle className="flex items-center">
+                    <Link href="/" className="flex items-center">
+                      <img
+                        className="w-24 h-auto mr-2"
+                        src={isDark ? "/assets/veltrix-dark.png" : "/assets/veltrix-light.png"}
+                        alt="Veltrix Logo"
+                      />
+                    </Link>
+                  </SheetTitle>
+                </SheetHeader>
+
+                <div className="flex flex-col gap-2">
+                  {routeList.map(({ href, label }) => (
+                    <motion.div
+                      key={href}
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <p className="mb-1 font-semibold leading-none text-foreground">
-                        {title}
-                      </p>
-                      <p className="line-clamp-2 text-muted-foreground">
-                        {description}
-                      </p>
-                    </li>
+                      <Button
+                        onClick={() => setIsOpen(false)}
+                        asChild
+                        variant="ghost"
+                        className="justify-start text-sm"
+                      >
+                        <Link href={href}>{label}</Link>
+                      </Button>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
               </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            {routeList.map(({ href, label }) => (
-              <NavigationMenuLink key={href} asChild>
-                <Link href={href} className="text-sm px-2">
-                  {label}
-                </Link>
-              </NavigationMenuLink>
-            ))}
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+              <SheetFooter className="flex-col sm:flex-col justify-start items-start">
+                <Separator className="mb-2" />
+                
+                {/* Available Badge in Mobile */}
+                <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-semibold mb-4 ${
+                  isDark
+                    ? "bg-slate-900 border border-purple-500/50"
+                    : "bg-gray-100 border border-purple-300/50"
+                }`}>
+                  <motion.div
+                    className="w-2 h-2 bg-green-500 rounded-full"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [1, 0.7, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                    }}
+                  />
+                  <span>Available for work</span>
+                </div>
 
-      <div className="hidden lg:flex">
-        <ToggleTheme />
+                <ToggleTheme />
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+          </div>
+        )}
 
-      
-      </div>
-    </header>
+        {/* Desktop Navigation - HORIZONTAL LINE */}
+        <AnimatePresence>
+          {showFullNav && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+              className="hidden lg:block mx-auto"
+            >
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem className="flex items-center gap-1">
+                    {routeList.map(({ href, label }) => (
+                      <NavigationMenuLink key={href} asChild>
+                        <motion.div
+                          whileHover={{ y: -2 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Link
+                            href={href}
+                            className={`text-sm px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
+                              isDark
+                                ? "hover:bg-slate-800 hover:text-purple-400"
+                                : "hover:bg-gray-100 hover:text-purple-600"
+                            }`}
+                          >
+                            {label}
+                          </Link>
+                        </motion.div>
+                      </NavigationMenuLink>
+                    ))}
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Desktop Right Side - Theme Toggle */}
+        <motion.div 
+          layout
+          className={`hidden lg:flex ${scrolled && !isHovered ? 'ml-3' : ''}`}
+        >
+          <ToggleTheme />
+        </motion.div>
+
+        {/* Bottom Glow Effect */}
+        {scrolled && !isHovered && (
+          <motion.div
+            className={`absolute -bottom-6 left-1/2 -translate-x-1/2 w-[70%] h-6 blur-2xl rounded-full pointer-events-none ${
+              isDark
+                ? "bg-gradient-to-r from-purple-600/40 via-pink-600/40 to-purple-600/40"
+                : "bg-gradient-to-r from-purple-400/30 via-pink-400/30 to-purple-400/30"
+            }`}
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              scale: [0.95, 1, 0.95],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+            }}
+          />
+        )}
+      </motion.div>
+    </motion.header>
   );
 };
