@@ -1,7 +1,6 @@
 "use client";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import {
   Sheet,
   SheetContent,
@@ -81,176 +80,110 @@ export const Navbar = () => {
   }
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-      className="w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky z-40"
-    >
-      <motion.div
-        animate={{
-          boxShadow: scrolled 
-            ? isDark 
-              ? '0 20px 25px -5px rgba(139, 92, 246, 0.3), 0 10px 10px -5px rgba(236, 72, 153, 0.2)' 
-              : '0 20px 25px -5px rgba(139, 92, 246, 0.2), 0 10px 10px -5px rgba(236, 72, 153, 0.15)'
-            : '0 0 0 0 rgba(0, 0, 0, 0)',
-        }}
-        transition={{ duration: 0.3 }}
-        className={`relative flex justify-between items-center p-2 rounded-2xl backdrop-blur-xl transition-all duration-500 ${
+    <header className="w-full top-0 mx-auto sticky z-40 px-4 py-3">
+      <div
+        className={`max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 rounded-xl backdrop-blur-md transition-all duration-300 ${
           isDark
             ? scrolled
-              ? "bg-slate-950/95 border-2 border-purple-500/40"
-              : "bg-slate-950/80 border border-slate-700/50 shadow-inner"
+              ? "bg-slate-950/95 border-2 border-purple-500/40 shadow-lg shadow-purple-500/20"
+              : "bg-slate-950/80 border border-slate-700/50"
             : scrolled
-            ? "bg-white/95 border-2 border-purple-300/50"
-            : "bg-white/80 border border-gray-200/50 shadow-inner"
+            ? "bg-white/95 border-2 border-purple-300/50 shadow-lg shadow-purple-300/20"
+            : "bg-white/80 border border-gray-200/50"
         }`}
       >
-        {/* Animated Gradient Border Glow on Scroll */}
-        {scrolled && (
-          <motion.div
-            className="absolute inset-0 rounded-2xl opacity-30 pointer-events-none"
-            style={{
-              background: `linear-gradient(90deg, transparent, ${
-                isDark ? "rgba(139, 92, 246, 0.6)" : "rgba(139, 92, 246, 0.4)"
-              }, transparent)`,
-              backgroundSize: "200% 100%",
-            }}
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        )}
-
-        {/* Logo Section */}
-        <Link href="/" className="font-bold text-lg flex items-center relative z-10">
-          <motion.img
-            whileHover={{ scale: 1.05 }}
-            className="w-24 h-auto"
+        {/* Logo */}
+        <Link href="/" className="flex items-center flex-shrink-0">
+          <img
+            className="w-20 sm:w-24 h-auto"
             src={isDark ? "/assets/veltrix-dark.png" : "/assets/veltrix-light.png"}
             alt="Veltrix Logo"
           />
         </Link>
 
-        {/* Mobile Menu Button */}
-{/* Mobile Menu Button */}
-<div className="flex items-center lg:hidden xl:hidden relative z-10">  
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <motion.button
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsOpen(!isOpen)}
-                className="cursor-pointer p-2"
-              >
-                <Menu />
-              </motion.button>
-            </SheetTrigger>
-
-            <SheetContent
-              side="left"
-              className={`flex flex-col justify-between rounded-tr-2xl rounded-br-2xl backdrop-blur-xl ${
-                isDark ? "bg-slate-950/95 border-slate-800" : "bg-white/95 border-gray-200"
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center mx-4">
+          {routeList.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`text-sm px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
+                isDark
+                  ? "hover:bg-slate-800 hover:text-purple-400"
+                  : "hover:bg-gray-100 hover:text-purple-600"
               }`}
             >
-              <div>
-                <SheetHeader className="mb-4 ml-4">
-                  <SheetTitle className="flex items-center">
-                    <Link href="/" className="flex items-center">
-                      <img
-                        className="w-24 h-auto mr-2"
-                        src={isDark ? "/assets/veltrix-dark.png" : "/assets/veltrix-light.png"}
-                        alt="Veltrix Logo"
-                      />
-                    </Link>
-                  </SheetTitle>
-                </SheetHeader>
+              {label}
+            </Link>
+          ))}
+        </nav>
 
-                <div className="flex flex-col gap-2">
-                  {routeList.map(({ href, label }) => (
-                    <motion.div
-                      key={href}
-                      whileHover={{ x: 5 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Button
-                        onClick={() => setIsOpen(false)}
-                        asChild
-                        variant="ghost"
-                        className="justify-start text-sm"
-                      >
-                        <Link href={href}>{label}</Link>
-                      </Button>
-                    </motion.div>
-                  ))}
+        {/* Right Side */}
+        <div className="flex items-center gap-3">
+          {/* Desktop Theme Toggle */}
+          <div className="hidden lg:flex">
+            <ToggleTheme />
+          </div>
+
+          {/* Mobile Menu */}
+          <div className="lg:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <button
+                  className={`p-2 rounded-lg transition-colors ${
+                    isDark ? "hover:bg-slate-800" : "hover:bg-gray-100"
+                  }`}
+                >
+                  {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </button>
+              </SheetTrigger>
+
+              <SheetContent
+                side="left"
+                className={`flex flex-col justify-between rounded-tr-2xl rounded-br-2xl backdrop-blur-xl w-[280px] sm:w-[320px] ${
+                  isDark ? "bg-slate-950/95 border-slate-800" : "bg-white/95 border-gray-200"
+                }`}
+              >
+                <div className="flex flex-col h-full">
+                  <SheetHeader className="mb-6">
+                    <SheetTitle>
+                      <Link href="/" onClick={() => setIsOpen(false)}>
+                        <img
+                          className="w-24 h-auto"
+                          src={isDark ? "/assets/veltrix-dark.png" : "/assets/veltrix-light.png"}
+                          alt="Veltrix Logo"
+                        />
+                      </Link>
+                    </SheetTitle>
+                  </SheetHeader>
+
+                  {/* Menu Items */}
+                  <div className="flex-1 overflow-y-auto">
+                    <div className="flex flex-col gap-1">
+                      {routeList.map(({ href, label }) => (
+                        <Button
+                          key={href}
+                          onClick={() => setIsOpen(false)}
+                          asChild
+                          variant="ghost"
+                          className="justify-start text-sm w-full"
+                        >
+                          <Link href={href}>{label}</Link>
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <SheetFooter className="flex-col sm:flex-col justify-start items-start mt-4 pt-4">
+                    <Separator className="mb-3" />
+                    <ToggleTheme />
+                  </SheetFooter>
                 </div>
-              </div>
-
-              <SheetFooter className="flex-col sm:flex-col justify-start items-start">
-                <Separator className="mb-2" />
-                <ToggleTheme />
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
-
-        {/* Desktop Navigation - HORIZONTAL LINE */}
-        <NavigationMenu className="hidden lg:block mx-auto relative z-10">
-          <NavigationMenuList>
-            <NavigationMenuItem className="flex items-center gap-1">
-              {routeList.map(({ href, label }) => (
-                <NavigationMenuLink key={href} asChild>
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Link
-                      href={href}
-                      className={`text-sm px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
-                        isDark
-                          ? "hover:bg-slate-800 hover:text-purple-400"
-                          : "hover:bg-gray-100 hover:text-purple-600"
-                      }`}
-                    >
-                      {label}
-                    </Link>
-                  </motion.div>
-                </NavigationMenuLink>
-              ))}
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        {/* Desktop Right Side - Theme Toggle */}
-        <div className="hidden lg:flex relative z-10">
-          <ToggleTheme />
-        </div>
-
-        {/* Bottom Glow Effect on Scroll */}
-        {scrolled && (
-          <motion.div
-            className={`absolute -bottom-6 left-1/2 -translate-x-1/2 w-[70%] h-8 blur-2xl rounded-full pointer-events-none ${
-              isDark
-                ? "bg-gradient-to-r from-purple-600/40 via-pink-600/50 to-purple-600/40"
-                : "bg-gradient-to-r from-purple-400/30 via-pink-400/40 to-purple-400/30"
-            }`}
-            animate={{
-              opacity: [0.4, 0.7, 0.4],
-              scale: [0.95, 1.05, 0.95],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        )}
-      </motion.div>
-    </motion.header>
+      </div>
+    </header>
   );
 };

@@ -380,18 +380,17 @@ const isDark = !mounted || theme === 'dark';
               }`}>
                 
                 {/* Image Slider */}
+                       {/* Image Slider */}
                 <div className="relative h-64 sm:h-96 md:h-[550px] overflow-hidden">
                   {images.map((image, index) => (
                     <motion.div
                       key={index}
                       className="absolute inset-0"
-                      initial={{ opacity: 0, scale: 1.2 }}
+                      initial={{ opacity: 0 }}
                       animate={{
                         opacity: currentImage === index ? 1 : 0,
-                        scale: currentImage === index ? 1 : 1.2,
-                        filter: currentImage === index ? 'blur(0px)' : 'blur(10px)',
                       }}
-                      transition={{ duration: 1 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                       <img
                         src={image}
