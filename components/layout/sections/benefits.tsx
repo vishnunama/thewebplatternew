@@ -67,13 +67,14 @@ export const BenefitsSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    mouseX.set((e.clientX - centerX) / 20);
-    mouseY.set((e.clientY - centerY) / 20);
-  };
+// Line 70-76 (Tera complete function)
+const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  mouseX.set((e.clientX - centerX) / 20);
+  mouseY.set((e.clientY - centerY) / 20);
+};
 
   const handleMouseLeave = () => {
     mouseX.set(0);
