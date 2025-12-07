@@ -244,8 +244,7 @@ export const PricingSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          From simple landing pages to enterprise solutions, we&apos;ve got the perfect package for every need and budget.
-        </motion.p>
+From simple landing pages to enterprise solutions, we&apos;ve got the perfect package        </motion.p>
       </div>
 
       {/* Project Selector */}
