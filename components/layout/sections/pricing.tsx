@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Check, MessageCircle, Send, ShoppingCart, Sparkles, Globe, Crown } from "lucide-react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 enum PackageType {
   BASIC = "basic",
@@ -243,7 +244,7 @@ export const PricingSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          From simple landing pages to enterprise solutions, we've got the perfect package for every need and budget.
+          From simple landing pages to enterprise solutions, we&apos;ve got the perfect package for every need and budget.
         </motion.p>
       </div>
 
@@ -348,12 +349,12 @@ export const PricingSection = () => {
 
                 {/* Package Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <motion.img
+                  <Image
                     src={pkg.image}
                     alt={pkg.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t ${
                     isDark ? 'from-slate-900 via-slate-900/50' : 'from-white via-white/50'
