@@ -77,7 +77,7 @@ export const ContactUs = () => {
   };
 
   const handlePhoneCall = () => {
-    window.open('tel:+918696548657', '_self');
+    window.open('tel:+919079028393', '_self');
   };
 
   const handleEmailClick = () => {
@@ -114,7 +114,7 @@ export const ContactUs = () => {
           <h3 className="font-semibold mb-2">Call Us</h3>
           <p className="text-muted-foreground mb-2">Ready to discuss your project?</p>
           <span className="text-primary font-medium hover:underline">
-            +91 8696548657
+            +91 9079028393
           </span>
         </Card>
 
@@ -406,7 +406,7 @@ export const ContactUs = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" onClick={handlePhoneCall}>
             <Phone className="w-4 h-4 mr-2" />
-            Call Now: +91 8696548657
+            Call Now: +91 9079028393
           </Button>
           <Button variant="outline" size="lg" onClick={handleScheduleMeeting}>
             <Calendar className="w-4 h-4 mr-2" />

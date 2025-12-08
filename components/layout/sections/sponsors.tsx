@@ -161,11 +161,7 @@ export const SponsorsSection = () => {
           }`} />
 
           {/* Main Marquee Container */}
-          <div className={`relative rounded-2xl overflow-hidden backdrop-blur-xl border ${
-            isDark
-              ? 'bg-slate-900/50 border-slate-700/50'
-              : 'bg-white/50 border-gray-200/50'
-          } shadow-xl py-8`}>
+          <div className="relative rounded-2xl overflow-hidden py-8">
             
             {/* Animated shine effect */}
             <motion.div
