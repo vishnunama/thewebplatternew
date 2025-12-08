@@ -198,7 +198,7 @@ export const PricingSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="container py-24 sm:py-32 relative overflow-hidden">
+    <section ref={sectionRef} className="container py-24 sm:py-16 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div

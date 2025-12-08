@@ -54,7 +54,7 @@ const isDark = !mounted || theme === 'dark';
     return (
       <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid place-items-center lg:max-w-screen-xl gap-12 mx-auto py-20 md:py-32">
+          <div className="grid place-items-center lg:max-w-screen-xl gap-12 mx-auto py-20 md:py-16">
             <div className="text-center space-y-8">
               <div className="h-8 w-48 bg-slate-800 rounded-full mx-auto animate-pulse" />
               <div className="h-24 w-full max-w-2xl bg-slate-800 rounded-2xl mx-auto animate-pulse" />
@@ -164,7 +164,7 @@ const isDark = !mounted || theme === 'dark';
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid place-items-center lg:max-w-screen-xl gap-12 mx-auto py-20 md:py-32">
+        <div className="grid place-items-center lg:max-w-screen-xl gap-12 mx-auto py-20 md:py-16">
           
           {/* Content Section */}
           <div className="text-center space-y-8 relative">
@@ -201,32 +201,7 @@ const isDark = !mounted || theme === 'dark';
               <Zap className="w-20 h-20" />
             </motion.div>
 
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Badge 
-                variant="outline" 
-                className={`text-sm py-2 px-4 backdrop-blur-xl border-2 ${
-                  isDark 
-                    ? 'border-purple-500/50 bg-purple-500/10 text-purple-200' 
-                    : 'border-purple-300/80 bg-white/60 text-purple-700'
-                }`}
-              >
-                <span className="mr-2">
-                  <Badge className={`${
-                    isDark ? 'bg-purple-600' : 'bg-purple-500'
-                  } animate-pulse shadow-lg`}>
-                    <Sparkles className="w-3 h-3 mr-1 inline" />
-                    New
-                  </Badge>
-                </span>
-                <span className="font-medium">Design is out now!</span>
-              </Badge>
-            </motion.div>
+          
 
             {/* Main Heading with 3D Layers */}
             <div className="relative">

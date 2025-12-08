@@ -62,7 +62,7 @@ export const FAQSection = () => {
     <section 
       ref={sectionRef}
       id="faq" 
-      className="container py-24 sm:py-32 md:w-[700px] relative overflow-hidden"
+      className="container py-24 sm:py-16 md:w-[700px] relative overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

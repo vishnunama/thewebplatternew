@@ -87,7 +87,7 @@ const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     <section 
       id="benefits" 
       ref={sectionRef}
-      className="container py-24 sm:py-32 relative overflow-hidden"
+      className="container py-24 sm:py-16 relative overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

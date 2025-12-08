@@ -93,7 +93,7 @@ export const ServicesSection = () => {
     <section 
       id="services" 
       ref={sectionRef}
-      className="container py-24 sm:py-32 relative overflow-hidden"
+      className="container py-24 sm:py-16 relative overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

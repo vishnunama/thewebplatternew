@@ -90,7 +90,7 @@ export const ContactUs = () => {
   };
 
   return (
-    <section id="contact" className="container py-24 sm:py-32">
+    <section id="contact" className="container py-24 sm:py-16">
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h2 className="text-lg text-primary mb-2 tracking-wider">

@@ -18,7 +18,7 @@ import {
   
   export const PrivacyPolicy = () => {
     return (
-      <section id="privacy" className="container py-24 sm:py-32">
+      <section id="privacy" className="container py-24 sm:py-16">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h2 className="text-lg text-primary mb-2 tracking-wider">

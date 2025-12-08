@@ -61,7 +61,7 @@ export const SponsorsSection = () => {
     <section 
       ref={sectionRef}
       id="sponsors" 
-      className="w-full py-24 sm:py-32 relative overflow-hidden"
+      className="w-full py-24 sm:py-16 relative overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

@@ -101,7 +101,7 @@ export const ContactSection = () => {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="container py-24 sm:py-32 relative overflow-hidden"
+      className="container py-24 sm:py-16 relative overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
