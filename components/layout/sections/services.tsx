@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -55,9 +55,9 @@ const serviceList: ServiceProps[] = [
     icon: Rocket,
   },
   {
-    title: "Task Earning Apps",
+    title: "Real Estate Platforms",
     description:
-      "Feature-rich earning platforms with referral systems, wallet integration, reward mechanisms, and comprehensive admin panels for complete control.",
+      "Property listing websites with advanced search, virtual tours, booking systems, and CRM integration for real estate agencies and property developers.",
     pro: 1,
     icon: Wallet,
   },
@@ -80,20 +80,16 @@ const serviceList: ServiceProps[] = [
 export const ServicesSection = () => {
   const { theme } = useTheme();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  const isDark = !mounted || theme === 'dark';
+  const isDark = theme === 'dark';
+
   return (
     <section 
       id="services" 
       ref={sectionRef}
-      className="container py-24 sm:py-16 relative overflow-hidden"
+      className="container py-24 sm:py-32 relative overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -228,9 +224,10 @@ export const ServicesSection = () => {
               style={{
                 transformStyle: "preserve-3d",
               }}
+              className="relative"
             >
               <Card
-                className={`group h-full relative overflow-hidden transition-all duration-500 ${
+                className={`group h-full relative overflow-visible transition-all duration-500 ${
                   hoveredCard === index
                     ? isDark
                       ? 'bg-gradient-to-br from-purple-900/60 via-slate-900/60 to-pink-900/60 border-purple-500/50 shadow-2xl'
@@ -257,21 +254,7 @@ export const ServicesSection = () => {
                   }}
                 />
 
-                {/* Floating Geometric Shape */}
-                <motion.div
-                  className={`absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-20 ${
-                    isDark ? 'bg-purple-500' : 'bg-purple-400'
-                  }`}
-                  animate={hoveredCard === index ? {
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 90, 0],
-                  } : {}}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
+               
 
                 <CardHeader className="relative z-10">
                   {/* Icon Container */}

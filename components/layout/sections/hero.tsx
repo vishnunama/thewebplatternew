@@ -249,7 +249,7 @@ const isDark = !mounted || theme === 'dark';
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    Development Company
+                    Development Services
                   </motion.span>
                 </h1>
               </motion.div>
@@ -264,8 +264,8 @@ const isDark = !mounted || theme === 'dark';
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Our software experts provide enterprise software development with intelligent solutions like Software, ML, blockchain, metaverse and other advanced technologies, creating customized software solutions.
-            </motion.p>
+We create stunning websites, e-commerce platforms, and custom web applications. 
+              From landing pages to complex systems, we deliver professional solutions tailored to your business needs.            </motion.p>
 
             {/* CTA Buttons with 3D Effect */}
             <motion.div

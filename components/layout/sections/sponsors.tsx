@@ -166,12 +166,7 @@ export const SponsorsSection = () => {
             {/* Animated shine effect */}
             <motion.div
               className="absolute inset-0 opacity-20"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${
-                  isDark ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.2)'
-                }, transparent)`,
-                backgroundSize: '200% 100%',
-              }}
+              
               animate={{
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
