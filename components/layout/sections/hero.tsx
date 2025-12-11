@@ -210,48 +210,24 @@ const isDark = !mounted || theme === 'dark';
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
-                  <motion.div
-                    className="relative inline-block"
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    {/* Shadow layers for depth */}
-                    <span className={`absolute inset-0 blur-2xl ${
-                      isDark 
-                        ? 'text-purple-600/50' 
-                        : 'text-purple-500/30'
-                    }`}>
-                      VelTrix Web Solution
-                    </span>
-                    <motion.span
-                      className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#D247BF] via-purple-500 to-pink-500"
-                      animate={{
-                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                      }}
-                      transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
-                      style={{
-                        backgroundSize: "200% 200%",
-                      }}
-                    >
-                      VelTrix Web Solution
-                    </motion.span>
-                  </motion.div>
-                  <br />
-                  <motion.span 
-                    className={`inline-block mt-4 ${
-                      isDark ? 'text-white' : 'text-slate-800'
-                    }`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    Development Services
-                  </motion.span>
-                </h1>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
+  <span className={`absolute inset-0 blur-2xl ${
+    isDark 
+      ? 'text-purple-600/50' 
+      : 'text-purple-500/30'
+  }`}>
+    VelTrix Web Solution Development Services
+  </span>
+  <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#D247BF] via-purple-500 to-pink-500">
+    VelTrix Web Solution
+  </span>
+  <br />
+  <span className={`inline-block mt-4 ${
+    isDark ? 'text-white' : 'text-slate-800'
+  }`}>
+    Development Services
+  </span>
+</h1>
               </motion.div>
             </div>
 

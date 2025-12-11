@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -80,10 +80,15 @@ const serviceList: ServiceProps[] = [
 export const ServicesSection = () => {
   const { theme } = useTheme();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   
-  const isDark = theme === 'dark';
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  const isDark = !mounted || theme === 'dark';
 
   return (
     <section 
@@ -227,7 +232,7 @@ export const ServicesSection = () => {
               className="relative"
             >
               <Card
-                className={`group h-full relative overflow-visible transition-all duration-500 ${
+                className={`group h-full relative transition-all duration-500 ${
                   hoveredCard === index
                     ? isDark
                       ? 'bg-gradient-to-br from-purple-900/60 via-slate-900/60 to-pink-900/60 border-purple-500/50 shadow-2xl'
@@ -235,7 +240,7 @@ export const ServicesSection = () => {
                     : isDark
                     ? 'bg-slate-900/50 hover:bg-slate-800/60 border-slate-700/50'
                     : 'bg-white/60 hover:bg-white/90 border-gray-200/50'
-                } backdrop-blur-sm`}
+                } backdrop-blur-sm overflow-hidden`}
               >
                 {/* Animated Gradient Background */}
                 <motion.div
@@ -254,7 +259,21 @@ export const ServicesSection = () => {
                   }}
                 />
 
-               
+                {/* Floating Geometric Shape */}
+                <motion.div
+                  className={`absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-20 ${
+                    isDark ? 'bg-purple-500' : 'bg-purple-400'
+                  }`}
+                  animate={hoveredCard === index ? {
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 90, 0],
+                  } : {}}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
 
                 <CardHeader className="relative z-10">
                   {/* Icon Container */}
@@ -316,24 +335,26 @@ export const ServicesSection = () => {
                 </CardHeader>
 
                 {/* Premium Badge */}
-                <Badge
-                  data-pro={ProService.YES === pro}
-                  variant="secondary"
-                  className={`absolute -top-2 -right-3 transition-all duration-300 ${
-                    ProService.YES === pro ? 'flex' : 'hidden'
-                  } ${
-                    hoveredCard === index
-                      ? 'scale-110 shadow-lg'
-                      : ''
-                  } ${
-                    isDark
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0'
-                      : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0'
-                  }`}
-                >
-                  <Sparkles className="w-3 h-3 mr-1" />
-                  PREMIUM
-                </Badge>
+                <div className="absolute -top-2 -right-3 z-30">
+                  <Badge
+                    data-pro={ProService.YES === pro}
+                    variant="secondary"
+                    className={`transition-all duration-300 ${
+                      ProService.YES === pro ? 'flex' : 'hidden'
+                    } ${
+                      hoveredCard === index
+                        ? 'scale-110 shadow-lg'
+                        : ''
+                    } ${
+                      isDark
+                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0'
+                        : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0'
+                    }`}
+                  >
+                    <Sparkles className="w-3 h-3 mr-1" />
+                    PREMIUM
+                  </Badge>
+                </div>
 
                 {/* Shine Effect on Hover */}
                 <motion.div
