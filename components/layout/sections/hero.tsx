@@ -254,16 +254,19 @@ We create stunning websites, e-commerce platforms, and custom web applications.
                 whileHover={{ scale: 1.05, rotateZ: 1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
-                  className={`w-full sm:w-auto px-8 py-6 font-bold text-lg group/arrow shadow-2xl ${
-                    isDark
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
-                      : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'
-                  }`}
-                >
-                  Get Started
-                  <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-2 transition-transform duration-300" />
-                </Button>
+               <Button 
+  asChild
+  className={`w-full sm:w-auto px-8 py-6 font-bold text-lg group/arrow shadow-2xl ${
+    isDark
+      ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
+      : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'
+  }`}
+>
+  <Link href="#contact">
+    Get Started
+    <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-2 transition-transform duration-300" />
+  </Link>
+</Button>
               </motion.div>
               
               <motion.div

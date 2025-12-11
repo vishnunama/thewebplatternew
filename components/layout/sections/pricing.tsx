@@ -417,26 +417,40 @@ From simple landing pages to enterprise solutions, we&apos;ve got the perfect pa
                   </div>
                 </CardContent>
 
-                <CardFooter className="flex gap-2 pt-6">
-                  <Button
-                    className={`flex-1 font-semibold ${
-                      pkg.type === PackageType.STANDARD
-                        ? `bg-gradient-to-r ${getPackageColor(pkg.type)} hover:opacity-90`
-                        : ''
-                    }`}
-                    variant={pkg.type === PackageType.STANDARD ? "default" : "secondary"}
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    WhatsApp
-                  </Button>
-                  <Button
-                    className="flex-1 font-semibold"
-                    variant="outline"
-                  >
-                    <Send className="w-4 h-4 mr-2" />
-                    Telegram
-                  </Button>
-                </CardFooter>
+           <CardFooter className="flex gap-2 pt-6">
+  <Button
+    asChild
+    className={`flex-1 font-semibold ${
+      pkg.type === PackageType.STANDARD
+        ? `bg-gradient-to-r ${getPackageColor(pkg.type)} hover:opacity-90`
+        : ''
+    }`}
+    variant={pkg.type === PackageType.STANDARD ? "default" : "secondary"}
+  >
+    <a 
+      href="https://wa.me/919079028393" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      <MessageCircle className="w-4 h-4 mr-2" />
+      WhatsApp
+    </a>
+  </Button>
+  <Button
+    asChild
+    className="flex-1 font-semibold"
+    variant="outline"
+  >
+    <a 
+      href="https://t.me/yourusername" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      <Send className="w-4 h-4 mr-2" />
+      Telegram
+    </a>
+  </Button>
+</CardFooter>
 
                 {/* Hover Glow */}
                 <motion.div

@@ -11,11 +11,9 @@ export const FooterSection = () => {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <img className="h-auto w-24" src="/assets/veltrix-dark.png" alt="" />
-              {/* <ChevronsDownIcon className=" text-blue-600" /> */}
-              {/* <span className="text-xl font-bold text-gray-900 dark:text-white">
-                Veltrix
-              </span> */}
+              <Link href="/">
+                <img className="h-auto w-24 cursor-pointer" src="/assets/veltrix-dark.png" alt="Veltrix Logo" />
+              </Link>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
               Building amazing digital experiences with modern technology.
@@ -30,6 +28,14 @@ export const FooterSection = () => {
             <ul className="space-y-3">
               <li>
                 <Link 
+                  href="/" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link 
                   href="/about" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
                 >
@@ -38,20 +44,26 @@ export const FooterSection = () => {
               </li>
               <li>
                 <Link 
-                  href="/contactus" 
+                  href="/services" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
                 >
-                  Contact Us
+                  Services
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="https://github.com" 
+                  href="/pricing" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
-                  GitHub
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/contactus" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                >
+                  Contact Us
                 </Link>
               </li>
             </ul>
@@ -65,7 +77,7 @@ export const FooterSection = () => {
             <ul className="space-y-3">
               <li>
                 <Link 
-                  href="#" 
+                  href="/services#mobile" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
                 >
                   iOS
@@ -73,7 +85,7 @@ export const FooterSection = () => {
               </li>
               <li>
                 <Link 
-                  href="#" 
+                  href="/services#mobile" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
                 >
                   Android
@@ -81,7 +93,7 @@ export const FooterSection = () => {
               </li>
               <li>
                 <Link 
-                  href="#" 
+                  href="/services#web" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
                 >
                   Web
@@ -157,6 +169,16 @@ export const FooterSection = () => {
                   rel="noopener noreferrer"
                 >
                   Discord
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="https://github.com" 
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
                 </Link>
               </li>
             </ul>
